@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package inventory;
+
+option java_package = "org.example.inventory";
+option java_multiple_files = true;
+
+import "google/protobuf/empty.proto";
+
+message Item {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  uint32 qyt = 4;
+  double price= 5;
+}
+
+message ItemIdRequest {
+  string id = 1;
+}
+
+message ItemIdResponse {
+  string id = 1;
+}
+
+service ItemService {
+  //create
+  rpc createItem(Item) returns (ItemIdResponse);
+  //read
+  rpc readItem(ItemIdRequest) returns (Item);
+  rpc listItem(google.protobuf.Empty) returns (stream Item);
+  //update
+  rpc updateItem(Item) returns (google.protobuf.Empty);
+  //delete
+  rpc deleteItem(ItemIdRequest) returns (google.protobuf.Empty);
+}
