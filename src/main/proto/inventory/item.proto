@@ -23,11 +23,19 @@ message ItemIdResponse {
   string id = 1;
 }
 
+message ItemsCreated {
+  uint32 total = 1;
+}
+
 service ItemService {
   //create
   rpc createItem(Item) returns (ItemIdResponse);
+  //TODO
+  rpc createItemViaStream(stream Item) returns (ItemsCreated);
   //read
   rpc readItem(ItemIdRequest) returns (Item);
+  //TODO
+  rpc listItemViaStream(stream ItemIdRequest) returns (stream Item);
   rpc listItem(google.protobuf.Empty) returns (stream Item);
   //update
   rpc updateItem(Item) returns (google.protobuf.Empty);

@@ -55,6 +55,15 @@ public class ItemServiceImpl extends ItemServiceGrpc.ItemServiceImplBase {
   }
 
   @Override
+  public StreamObserver<Item> createItemViaStream(StreamObserver<ItemsCreated> responseObserver) {
+    // TODO implementar metodo
+    // sugerencia, para practicar el streaming desde el lado del cliente
+    // enviar una lista de items que seran insertados en la base de datos y retornar el total de items creados
+
+    return super.createItemViaStream(responseObserver);
+  }
+
+  @Override
   public void readItem(ItemIdRequest request, StreamObserver<Item> responseObserver) {
     String id = request.getId();
 
@@ -100,6 +109,14 @@ public class ItemServiceImpl extends ItemServiceGrpc.ItemServiceImplBase {
     }
 
     responseObserver.onCompleted();
+  }
+
+  @Override
+  public StreamObserver<ItemIdRequest> listItemViaStream(StreamObserver<Item> responseObserver) {
+    // TODO implementar metodo
+    // sugerencia, para practicar el streaming bidireccional
+    // enviar una lista de item id consultar en base de datos y retornar un stream con los items encontrados
+    return super.listItemViaStream(responseObserver);
   }
 
   @Override
